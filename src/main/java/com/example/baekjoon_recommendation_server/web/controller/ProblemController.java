@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
 import com.example.baekjoon_recommendation_server.service.ProblemService;
+import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
@@ -55,6 +57,18 @@ public class ProblemController {
 			return new ResponseEntity(DefaultRes.res(200, "search_success", jsonObject), HttpStatus.OK);
 
 		} catch (Exception e) {
+			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity detail(@PathVariable Long id){
+		try{
+			System.out.println(id);
+			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(id);
+
+			return new ResponseEntity(DefaultRes.res(200, "get_detail_success", problemDetailDto), HttpStatus.OK);
+		} catch (Exception e){
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
