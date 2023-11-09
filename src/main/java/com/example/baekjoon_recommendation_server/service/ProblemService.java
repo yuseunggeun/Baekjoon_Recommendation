@@ -54,7 +54,7 @@ public class ProblemService {
 
 		Elements outputRules = document.select("div#problem_output > p");
 		String outputRule = "";
-		for(Element elem : inputRules){
+		for(Element elem : outputRules){
 			outputRule += elem.text();
 			outputRule += "\n";
 		}
