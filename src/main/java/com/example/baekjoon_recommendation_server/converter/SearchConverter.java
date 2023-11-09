@@ -14,7 +14,7 @@ public class SearchConverter {
 	//public Map<Integer, String> diff = new HashMap<Integer, String>();
 	public String toSearchQuery(SearchDto searchDto){
 		String solveCount = "s" + "#" + searchDto.getMinSolveCount().toString() + ".." + searchDto.getMaxSolveCount().toString();
-		String difficulty = "*" + diffToSting(searchDto.getMinDifficulty()) + ".." + diffToSting(searchDto.getMaxDifficulty());
+		String difficulty = "*" + diffToString(searchDto.getMinDifficulty()) + ".." + diffToString(searchDto.getMaxDifficulty());
 		String op = searchDto.getLogical().equals("and") ? "&" : "|";
 
 		String query = solveCount + "&" + difficulty + "&";
@@ -32,7 +32,7 @@ public class SearchConverter {
 		return query;
 	}
 
-	public String diffToSting(Integer diff){
+	public String diffToString(Integer diff){
 		String string;
 		if(diff <= 0){ return "0";}
 		else if(diff <= 5){ string = "b"; }
