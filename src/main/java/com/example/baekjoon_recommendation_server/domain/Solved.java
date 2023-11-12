@@ -33,7 +33,7 @@ public class Solved {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private User user;
-
+	private Long problemId;
 	@CreatedDate
 	@Column(columnDefinition = "datetime default now()", updatable = false)
 	private LocalDateTime solvedTime;
