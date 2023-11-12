@@ -1,26 +1,17 @@
 package com.example.baekjoon_recommendation_server.web.dto;
 
-import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Builder @Data
+@Builder
+@Data
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProblemDetailDto {
+public class UserDto {
 	private Long id;
-	private String title;
-	private Integer difficulty;
-	private Integer solveCount;
-	private String content;
-	private String inputRule;
-	private String outputRule;
-	private List<String> samples;
-	private boolean bookmarked;
-	private boolean solved;
 }

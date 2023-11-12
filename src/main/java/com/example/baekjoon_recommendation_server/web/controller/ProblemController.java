@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.baekjoon_recommendation_server.exception.ResponseMessage;
+import com.example.baekjoon_recommendation_server.exception.StatusCode;
 import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
 import com.example.baekjoon_recommendation_server.service.ProblemService;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
@@ -42,7 +44,7 @@ public class ProblemController {
 	@PostMapping("/search")
 	public ResponseEntity search(@RequestBody SearchDto request){
 		try{
-			System.out.println(request.getMinDifficulty());
+			//System.out.println(request.getMinDifficulty());
 			String url = problemService.getSearchQuery(request);
 
 			//System.out.println(url);
@@ -56,20 +58,20 @@ public class ProblemController {
 			ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(response.getBody());
-			return new ResponseEntity(DefaultRes.res(200, "search_success", jsonObject), HttpStatus.OK);
+			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, jsonObject), HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") //나중에 body로 난이도도 보내기
 	public ResponseEntity detail(@PathVariable Long id){
 		try{
-			System.out.println(id);
+			//System.out.println(id);
 			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(id);
 
-			return new ResponseEntity(DefaultRes.res(200, "get_detail_success", problemDetailDto), HttpStatus.OK);
+			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_DETAIL_SUCCESS, problemDetailDto), HttpStatus.OK);
 		} catch (Exception e){
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}

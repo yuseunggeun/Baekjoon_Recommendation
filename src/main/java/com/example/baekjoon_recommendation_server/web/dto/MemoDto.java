@@ -10,10 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BookmarkDto {
-	private Long id;
-	private String title;
-	private Integer difficulty;
-	private Integer solveCount;
+public class MemoDto {
 	private String memo;
 }

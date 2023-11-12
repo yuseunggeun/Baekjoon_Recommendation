@@ -8,5 +8,5 @@ import com.example.baekjoon_recommendation_server.domain.Problem;
 
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
 
-	//List<Problem> findByDifficultyAndInteger();
+
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.baekjoon_recommendation_server.converter.ProblemDetailConverter;
 import com.example.baekjoon_recommendation_server.converter.SearchConverter;
 import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
+import com.example.baekjoon_recommendation_server.repository.UserRepository;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 
