@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.baekjoon_recommendation_server.converter.BookmarkConverter;
 import com.example.baekjoon_recommendation_server.domain.Bookmark;
@@ -17,6 +18,7 @@ import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BookmarkService {
 	private final UserRepository userRepository;

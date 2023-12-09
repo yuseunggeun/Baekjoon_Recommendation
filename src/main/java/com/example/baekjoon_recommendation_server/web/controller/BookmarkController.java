@@ -60,6 +60,9 @@ public class BookmarkController {
 	@PostMapping("/{problemId}")
 	public ResponseEntity addBookmark(@PathVariable Long problemId){
 		try{
+			User user = User.builder().build();
+			userRepository.save(user);
+
 			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(problemId);
 			bookmarkService.addBookmark(1l, problemDetailDto);
 

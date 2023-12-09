@@ -21,6 +21,6 @@ public class ProblemDetailDto {
 	private String inputRule;
 	private String outputRule;
 	private List<String> samples;
-	private boolean bookmarked;
-	private boolean solved;
+	private Boolean bookmarked;
+	private Boolean solved;
 }

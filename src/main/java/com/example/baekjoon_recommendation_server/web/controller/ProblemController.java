@@ -2,9 +2,12 @@ package com.example.baekjoon_recommendation_server.web.controller;
 
 
 import java.net.URI;
+import java.util.List;
 
+//import org.json.JSONObject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.baekjoon_recommendation_server.converter.SearchConverter;
 import com.example.baekjoon_recommendation_server.exception.ResponseMessage;
 import com.example.baekjoon_recommendation_server.exception.StatusCode;
 import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
 import com.example.baekjoon_recommendation_server.service.ProblemService;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
+import com.example.baekjoon_recommendation_server.web.dto.ProblemDto;
 import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
@@ -35,6 +40,7 @@ public class ProblemController {
 	private RestTemplate restTemplate;
 	private final ProblemService problemService;
 	private final ProblemRepository problemRepository;
+	private final SearchConverter searchConverter;
 
 	@GetMapping("/test")
 	public String test(){
@@ -58,7 +64,11 @@ public class ProblemController {
 			ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(response.getBody());
-			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, jsonObject), HttpStatus.OK);
+			//JSONObject jsonObject = new JSONObject(response.getBody());
+			System.out.println(jsonObject);
+			List<ProblemDto> problemDtoList = searchConverter.jsonToList(jsonObject);
+
+			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, problemDtoList), HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);

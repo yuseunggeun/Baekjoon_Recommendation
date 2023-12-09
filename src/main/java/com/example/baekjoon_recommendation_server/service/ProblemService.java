@@ -11,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.baekjoon_recommendation_server.converter.ProblemDetailConverter;
 import com.example.baekjoon_recommendation_server.converter.SearchConverter;
@@ -22,6 +23,7 @@ import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProblemService {
 	private final ProblemRepository problemRepository;
