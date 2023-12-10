@@ -50,6 +50,8 @@ public class ProblemController {
 	@PostMapping("/search")
 	public ResponseEntity search(@RequestBody SearchDto request){
 		try{
+			System.out.println(request.getLogical());
+			System.out.println(request.getTags());
 			//System.out.println(request.getMinDifficulty());
 			String url = problemService.getSearchQuery(request);
 
@@ -71,6 +73,7 @@ public class ProblemController {
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, problemDtoList), HttpStatus.OK);
 
 		} catch (Exception e) {
+			System.out.println(e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -83,6 +86,7 @@ public class ProblemController {
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_DETAIL_SUCCESS, problemDetailDto), HttpStatus.OK);
 		} catch (Exception e){
+			System.out.println(e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -8,10 +8,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
-@Data
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class UserDto {
-	private Long id;
+
+	@Builder
+	@Getter
+	@AllArgsConstructor(access = AccessLevel.PROTECTED)
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	public static class SignUpDto{
+		private String userId;
+		private String name;
+		private String password;
+	}
+
+	@Builder
+	@Getter
+	@AllArgsConstructor(access = AccessLevel.PROTECTED)
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	public static class LoginDto{
+		private String userId;
+		private String password;
+	}
 }

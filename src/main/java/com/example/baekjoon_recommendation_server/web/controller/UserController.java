@@ -35,4 +35,27 @@ public class UserController{
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
+	@PostMapping("/login")
+	public ResponseEntity login(){
+		try{
+			User user = User.builder().id(1l).userName("test").password("test").build();
+			userRepository.save(user);
+			return new ResponseEntity(
+				DefaultRes.res(StatusCode.OK, "test success"), HttpStatus.OK);
+		} catch (Exception e){
+			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@PostMapping("/singup")
+	public ResponseEntity signup(){
+		try{
+			User user = User.builder().id(1l).userName("test").password("test").build();
+			userRepository.save(user);
+			return new ResponseEntity(
+				DefaultRes.res(StatusCode.OK, "test success"), HttpStatus.OK);
+		} catch (Exception e){
+			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

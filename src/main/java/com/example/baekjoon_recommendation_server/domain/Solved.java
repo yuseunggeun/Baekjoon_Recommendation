@@ -41,4 +41,8 @@ public class Solved {
 	private Long elapsedTime;
 
 	private String memo;
+
+	public void updateMemo(String memo){
+		this.memo = memo;
+	}
 }

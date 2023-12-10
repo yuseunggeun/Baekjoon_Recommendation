@@ -23,6 +23,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String userId;
 	private String password;
 	private String userName;
 	@OneToMany(mappedBy = "user")
