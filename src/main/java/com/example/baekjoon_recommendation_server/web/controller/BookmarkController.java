@@ -24,7 +24,6 @@ import com.example.baekjoon_recommendation_server.service.ProblemService;
 import com.example.baekjoon_recommendation_server.web.dto.BookmarkDto;
 import com.example.baekjoon_recommendation_server.web.dto.MemoDto;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
-import com.example.baekjoon_recommendation_server.web.dto.UserDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
 import lombok.RequiredArgsConstructor;

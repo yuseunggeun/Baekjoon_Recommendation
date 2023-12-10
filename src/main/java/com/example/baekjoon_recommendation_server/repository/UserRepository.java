@@ -6,4 +6,6 @@ import com.example.baekjoon_recommendation_server.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByUserId(String userId);
+	boolean existsByUserId(String userId);
 }

@@ -4,29 +4,28 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
-public class UserDto {
+public class UserResponseDto {
 
 	@Builder
-	@Getter
+	@Data
 	@AllArgsConstructor(access = AccessLevel.PROTECTED)
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class SignUpDto{
+	public static class LoginResDto{
 		private String userId;
 		private String name;
 		private String password;
 	}
 
 	@Builder
-	@Getter
+	@Data
 	@AllArgsConstructor(access = AccessLevel.PROTECTED)
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class LoginDto{
+	public static class SignUpResDto{
 		private String userId;
+		private String name;
 		private String password;
 	}
 }
