@@ -28,4 +28,14 @@ public class UserResponseDto {
 		private String name;
 		private String password;
 	}
+
+	@Builder
+	@Data
+	@AllArgsConstructor(access = AccessLevel.PROTECTED)
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	public static class ValidateResDto{
+		private String userId;
+		private String name;
+		private String password;
+	}
 }

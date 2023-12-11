@@ -26,4 +26,13 @@ public class UserRequestDto {
 		private String userId;
 		private String password;
 	}
+
+	@Builder
+	@Getter
+	@AllArgsConstructor(access = AccessLevel.PROTECTED)
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	public static class ValidateDto{
+		private String userId;
+		private String password;
+	}
 }

@@ -13,4 +13,10 @@ public class CustomExceptions {
 			super(message);
 		}
 	}
+
+	public static class ValidateException extends RuntimeException{
+		public ValidateException(String message){
+			super(message);
+		}
+	}
 }

@@ -58,4 +58,24 @@ public class UserService {
 			.build();
 		return res;
 	}
+
+	public UserResponseDto.ValidateResDto getCurrentUser(UserRequestDto.ValidateDto validateDto){
+		String userId = validateDto.getUserId();
+		String password = validateDto.getPassword();
+
+		if(!userRepository.existsByUserId(userId)){
+			throw new CustomExceptions.ValidateException("유효하지 않은 요청입니다");
+		}
+
+		User user = userRepository.findByUserId(userId);
+		if(!user.getPassword().equals(password)){
+			throw new CustomExceptions.ValidateException("유효하지 않은 요청입니다");
+		}
+		UserResponseDto.ValidateResDto res = UserResponseDto.ValidateResDto.builder()
+			.userId(userId)
+			.password(password)
+			.name(user.getUserName())
+			.build();
+		return res;
+	}
 }

@@ -39,6 +39,8 @@ public class Solved {
 	private LocalDateTime solvedTime;
 
 	private Long elapsedTime;
+	private String title;
+	private Integer difficulty;
 
 	private String memo;
 

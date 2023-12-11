@@ -13,6 +13,7 @@ import com.example.baekjoon_recommendation_server.domain.User;
 import com.example.baekjoon_recommendation_server.repository.BookmarkRepository;
 import com.example.baekjoon_recommendation_server.repository.UserRepository;
 import com.example.baekjoon_recommendation_server.web.dto.BookmarkDto;
+import com.example.baekjoon_recommendation_server.web.dto.BookmarkRequestDto;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 
 import lombok.RequiredArgsConstructor;
@@ -25,13 +26,15 @@ public class BookmarkService {
 	private final BookmarkRepository bookmarkRepository;
 	private final BookmarkConverter bookmarkConverter;
 
-	public List<BookmarkDto> getBookmarks(Long id){
-		User user = userRepository.findById(id).orElseThrow();
+	public List<BookmarkDto> getBookmarks(String userId){
+		User user = userRepository.findByUserId(userId);
+
 		List<Bookmark> bookmarks = user.getBookmarks();
 		List<BookmarkDto> bookmarkDtos = new ArrayList<BookmarkDto>();
 		for(Bookmark bookmark : bookmarks){
 			bookmarkDtos.add(bookmarkConverter.toBookmarkDto(
 				bookmark.getId(),
+				bookmark.getProblemId(),
 				bookmark.getTitle(),
 				bookmark.getDifficulty(),
 				bookmark.getSolveCount(),
@@ -45,6 +48,7 @@ public class BookmarkService {
 		Bookmark bookmark = bookmarkRepository.findById(bookmarkId).orElseThrow();
 		return bookmarkConverter.toBookmarkDto(
 			bookmark.getId(),
+			bookmark.getProblemId(),
 			bookmark.getTitle(),
 			bookmark.getDifficulty(),
 			bookmark.getSolveCount(),
@@ -52,9 +56,15 @@ public class BookmarkService {
 		);
 	}
 
-	public void addBookmark(Long userId, ProblemDetailDto problemDetailDto){
-		User user = userRepository.findById(1l).orElseThrow();
-		Bookmark bookmark = bookmarkConverter.problemToBookmarkDto(user, problemDetailDto);
+	/*
+	public void addBookmark(String userId, ProblemDetailDto problemDetailDto){ //난이도 이슈
+		User user = userRepository.findByUserId(userId);
+		Bookmark bookmark = bookmarkConverter.problemDetailToBookmark(user, problemDetailDto);
+		bookmarkRepository.save(bookmark);
+	}*/
+	public void addBookmark(String userId, BookmarkRequestDto bookmarkRequestDto){ //난이도 이슈
+		User user = userRepository.findByUserId(userId);
+		Bookmark bookmark = bookmarkConverter.requestDtoToBookmark(user, bookmarkRequestDto);
 		bookmarkRepository.save(bookmark);
 	}
 
