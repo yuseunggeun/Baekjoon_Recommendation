@@ -44,8 +44,11 @@ public class SolvedController {
 			UserResponseDto.ValidateResDto user = userService.getCurrentUser(req);
 
 			List<SolvedDto> solvedDtoList = solvedService.getsolves(user.getUserId());
+
+			log.info("get solved success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SOLVED_READ_SUCCESS, solvedDtoList), HttpStatus.OK);
 		} catch (Exception e){
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -54,6 +57,8 @@ public class SolvedController {
 	public ResponseEntity addSolved(@PathVariable Long problemId, @RequestHeader("userId") String userId, @RequestHeader("password") String password,
 		@RequestBody SolvedRequestDto request){
 		try{
+			log.info("add solved problem : ", problemId);
+
 			UserRequestDto.ValidateDto req = UserRequestDto.ValidateDto.builder()
 				.userId(userId)
 				.password(password)
@@ -64,6 +69,7 @@ public class SolvedController {
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SOLVED_ADD_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -71,6 +77,8 @@ public class SolvedController {
 	@PutMapping("/{solvedId}")
 	public ResponseEntity updateSolvedMemo(@PathVariable Long solvedId, @RequestBody MemoDto request, @RequestHeader("userId") String userId, @RequestHeader("password") String password){
 		try{
+			log.info("update memo : ", request.getMemo());
+
 			UserRequestDto.ValidateDto req = UserRequestDto.ValidateDto.builder()
 				.userId(userId)
 				.password(password)
@@ -79,8 +87,10 @@ public class SolvedController {
 
 			String memo = request.getMemo();
 			solvedService.updateSolved(solvedId, memo);
+
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SOLVED_UPDATE_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

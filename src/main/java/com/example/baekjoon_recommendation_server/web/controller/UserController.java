@@ -46,9 +46,10 @@ public class UserController{
 		try{
 			UserResponseDto.LoginResDto res = userService.login(loginDto);
 
+			log.info("info : login success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, res), HttpStatus.OK);
 		} catch (CustomExceptions.LoginException e){
-			log.error("error : {}", e);
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -58,9 +59,10 @@ public class UserController{
 		try{
 			UserResponseDto.SignUpResDto res = userService.signUp(signUpDto);
 
+			log.info("info : signup success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.REGISTER_SUCCESS, res), HttpStatus.OK);
 		} catch (CustomExceptions.RegisterException e){
-			log.error("error : {}", e);
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

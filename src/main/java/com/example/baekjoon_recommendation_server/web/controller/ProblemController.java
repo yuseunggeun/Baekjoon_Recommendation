@@ -50,33 +50,24 @@ public class ProblemController {
 	@PostMapping("/search")
 	public ResponseEntity search(@RequestBody SearchDto request){
 		try{
-			System.out.println("call");
-			log.info("req : {}", request.getLogical());
-			System.out.println(request.getLogical());
-			System.out.println(request.getTags());
-			//System.out.println(request.getMinDifficulty());
 			String url = problemService.getSearchQuery(request);
-
-			//System.out.println(url);
 
 			URI uri = UriComponentsBuilder
 				.fromUriString("https://solved.ac/api/v3/search/problem")
 				.queryParam("query", url)
 				.encode().build().toUri();
-			//System.out.println(uri);
+
+			log.info("search uri : ", uri);
 
 			ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(response.getBody());
-			//JSONObject jsonObject = new JSONObject(response.getBody());
-			System.out.println(jsonObject);
 			List<ProblemDto> problemDtoList = searchConverter.jsonToList(jsonObject);
 
+			log.info("search success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, problemDtoList), HttpStatus.OK);
-
 		} catch (Exception e) {
-			System.out.println(e);
-			log.error("error : {}", e);
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -84,13 +75,12 @@ public class ProblemController {
 	@GetMapping("/{id}") //나중에 body로 난이도도 보내기
 	public ResponseEntity detail(@PathVariable Long id){
 		try{
-			System.out.println(id);
+			log.info("get problem detail : ", id);
 			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(id);
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_DETAIL_SUCCESS, problemDetailDto), HttpStatus.OK);
 		} catch (Exception e){
-			System.out.println(e);
-			log.error("error : {}", e);
+			log.error("error : ", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
