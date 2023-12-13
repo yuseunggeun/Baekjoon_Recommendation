@@ -15,33 +15,26 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.baekjoon_recommendation_server.domain.User;
 import com.example.baekjoon_recommendation_server.exception.ResponseMessage;
 import com.example.baekjoon_recommendation_server.exception.StatusCode;
-import com.example.baekjoon_recommendation_server.repository.BookmarkRepository;
-import com.example.baekjoon_recommendation_server.repository.UserRepository;
 import com.example.baekjoon_recommendation_server.service.BookmarkService;
-import com.example.baekjoon_recommendation_server.service.ProblemService;
 import com.example.baekjoon_recommendation_server.service.UserService;
 import com.example.baekjoon_recommendation_server.web.dto.BookmarkDto;
 import com.example.baekjoon_recommendation_server.web.dto.BookmarkRequestDto;
 import com.example.baekjoon_recommendation_server.web.dto.MemoDto;
-import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
-import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 import com.example.baekjoon_recommendation_server.web.dto.UserRequestDto;
 import com.example.baekjoon_recommendation_server.web.dto.UserResponseDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/bookmark")
 public class BookmarkController {
-	private final BookmarkRepository bookmarkRepository;
-	private final UserRepository userRepository;
 	private final BookmarkService bookmarkService;
-	private final ProblemService problemService;
 	private final UserService userService;
 
 	@GetMapping("/bookmarks")

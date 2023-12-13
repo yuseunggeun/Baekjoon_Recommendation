@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.baekjoon_recommendation_server.exception.ResponseMessage;
 import com.example.baekjoon_recommendation_server.exception.StatusCode;
-import com.example.baekjoon_recommendation_server.repository.SolvedRepository;
 import com.example.baekjoon_recommendation_server.service.SolvedService;
 import com.example.baekjoon_recommendation_server.service.UserService;
 import com.example.baekjoon_recommendation_server.web.dto.MemoDto;
@@ -28,7 +25,9 @@ import com.example.baekjoon_recommendation_server.web.dto.UserResponseDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/solved")
