@@ -4,7 +4,6 @@ package com.example.baekjoon_recommendation_server.web.controller;
 import java.net.URI;
 import java.util.List;
 
-//import org.json.JSONObject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -25,7 +24,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.example.baekjoon_recommendation_server.converter.SearchConverter;
 import com.example.baekjoon_recommendation_server.exception.ResponseMessage;
 import com.example.baekjoon_recommendation_server.exception.StatusCode;
-import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
 import com.example.baekjoon_recommendation_server.service.ProblemService;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDto;
@@ -43,7 +41,6 @@ public class ProblemController {
 	@Autowired
 	private RestTemplate restTemplate;
 	private final ProblemService problemService;
-	private final ProblemRepository problemRepository;
 	private final SearchConverter searchConverter;
 	@GetMapping("/test")
 	public String test(){

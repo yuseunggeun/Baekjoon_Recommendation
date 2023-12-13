@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.baekjoon_recommendation_server.converter.ProblemDetailConverter;
 import com.example.baekjoon_recommendation_server.converter.SearchConverter;
-import com.example.baekjoon_recommendation_server.repository.ProblemRepository;
-import com.example.baekjoon_recommendation_server.repository.UserRepository;
 import com.example.baekjoon_recommendation_server.web.dto.ProblemDetailDto;
 import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 
@@ -26,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class ProblemService {
-	private final ProblemRepository problemRepository;
 	private final SearchConverter searchConverter;
 	private final ProblemDetailConverter problemDetailConverter;
 
@@ -34,7 +31,7 @@ public class ProblemService {
 		return searchConverter.toSearchQuery(searchDto);
 	}
 
-	public ProblemDetailDto getProblemDetail(Long id) throws IOException {
+	public ProblemDetailDto getProblemDetail(Long id) throws IOException { //크롤링
 		String url = "https://www.acmicpc.net/problem/" + id.toString();
 		Document document = Jsoup.connect(url).get();
 
