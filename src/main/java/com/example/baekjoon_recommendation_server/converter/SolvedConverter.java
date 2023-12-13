@@ -23,7 +23,7 @@ public class SolvedConverter {
 			.difficulty(solved.getDifficulty())
 			.solvedTime(solved.getSolvedTime())
 			.elapsedTime(solved.getElapsedTime())
-			.memo("empty")
+			.memo(solved.getMemo())
 			.build();
 	}
 
