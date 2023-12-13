@@ -8,6 +8,6 @@ import com.example.baekjoon_recommendation_server.domain.Bookmark;
 import com.example.baekjoon_recommendation_server.domain.User;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
-
+	List<Bookmark> findByUserAndProblemId(User user, Long problemId);
 	List<Bookmark> findByUser(User user);
 }

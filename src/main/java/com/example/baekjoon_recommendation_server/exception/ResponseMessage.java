@@ -8,6 +8,9 @@ public class ResponseMessage {
 	public static final String BOOKMARK_ADD_SUCCESS = "북마크 추가 성공";
 	public static final String BOOKMARK_DELETE_SUCCESS = "북마크 삭제 성공";
 	public static final String BOOKMARK_UPDATE_SUCCESS = "북마크 업데이트 성공";
+	public static final String SOLVED_READ_SUCCESS = "해결문제 불러오기 성공";
+	public static final String SOLVED_ADD_SUCCESS = "해결문제 추가 성공";
+	public static final String SOLVED_UPDATE_SUCCESS = "해결문제 업데이트 성공";
 	public static final String LOGIN_SUCCESS = "로그인 성공";
 	public static final String LOGIN_FAIL = "로그인 실패";
 	public static final String REGISTER_SUCCESS = "회원가입 성공";

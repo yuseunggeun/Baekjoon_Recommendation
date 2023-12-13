@@ -78,7 +78,6 @@ public class BookmarkController {
 				.build();
 			UserResponseDto.ValidateResDto user = userService.getCurrentUser(req);
 
-			//ProblemDetailDto problemDetailDto = problemService.getProblemDetail(problemId);
 			bookmarkService.addBookmark(user.getUserId(), request);
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_ADD_SUCCESS), HttpStatus.OK);
@@ -112,7 +111,7 @@ public class BookmarkController {
 				.build();
 			UserResponseDto.ValidateResDto user = userService.getCurrentUser(req);
 
-			String memo = request.getMemo();;
+			String memo = request.getMemo();
 			bookmarkService.updateBookmark(bookmarkId, memo);
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_UPDATE_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){

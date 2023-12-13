@@ -22,7 +22,9 @@ import com.example.baekjoon_recommendation_server.web.dto.UserResponseDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -38,6 +40,7 @@ public class UserController{
 			userRepository.save(user);
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, "test success"), HttpStatus.OK);
 		} catch (Exception e){
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -49,6 +52,7 @@ public class UserController{
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, res), HttpStatus.OK);
 		} catch (CustomExceptions.LoginException e){
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -60,6 +64,7 @@ public class UserController{
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.REGISTER_SUCCESS, res), HttpStatus.OK);
 		} catch (CustomExceptions.RegisterException e){
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

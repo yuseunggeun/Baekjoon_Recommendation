@@ -27,6 +27,8 @@ import lombok.NoArgsConstructor;
 public class SolvedDto {
 	private Long id;
 	private Long problemId;
+	private String title;
+	private Integer difficulty;
 	private LocalDateTime solvedTime;
 	private Long elapsedTime;
 	private String memo;

@@ -19,4 +19,10 @@ public class CustomExceptions {
 			super(message);
 		}
 	}
+
+	public static class BookmarkException extends RuntimeException{
+		public BookmarkException(String message){
+			super(message);
+		}
+	}
 }

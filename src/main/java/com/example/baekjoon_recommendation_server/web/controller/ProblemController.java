@@ -8,6 +8,8 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,9 @@ import com.example.baekjoon_recommendation_server.web.dto.SearchDto;
 import com.example.baekjoon_recommendation_server.web.dto.base.DefaultRes;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/problem")
@@ -41,7 +45,6 @@ public class ProblemController {
 	private final ProblemService problemService;
 	private final ProblemRepository problemRepository;
 	private final SearchConverter searchConverter;
-
 	@GetMapping("/test")
 	public String test(){
 		return "test";
@@ -50,6 +53,8 @@ public class ProblemController {
 	@PostMapping("/search")
 	public ResponseEntity search(@RequestBody SearchDto request){
 		try{
+			System.out.println("call");
+			log.info("req : {}", request.getLogical());
 			System.out.println(request.getLogical());
 			System.out.println(request.getTags());
 			//System.out.println(request.getMinDifficulty());
@@ -74,6 +79,7 @@ public class ProblemController {
 
 		} catch (Exception e) {
 			System.out.println(e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -81,12 +87,13 @@ public class ProblemController {
 	@GetMapping("/{id}") //나중에 body로 난이도도 보내기
 	public ResponseEntity detail(@PathVariable Long id){
 		try{
-			//System.out.println(id);
+			System.out.println(id);
 			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(id);
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_DETAIL_SUCCESS, problemDetailDto), HttpStatus.OK);
 		} catch (Exception e){
 			System.out.println(e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

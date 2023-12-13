@@ -28,4 +28,6 @@ public class User {
 	private String userName;
 	@OneToMany(mappedBy = "user")
 	private List<Bookmark> bookmarks;
+	@OneToMany(mappedBy = "user")
+	private List<Solved> solves;
 }
