@@ -49,7 +49,7 @@ public class UserController{
 			log.info("info : login success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, res), HttpStatus.OK);
 		} catch (CustomExceptions.LoginException e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

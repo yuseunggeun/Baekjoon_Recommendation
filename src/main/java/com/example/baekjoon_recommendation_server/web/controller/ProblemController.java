@@ -57,17 +57,17 @@ public class ProblemController {
 				.queryParam("query", url)
 				.encode().build().toUri();
 
-			log.info("search uri : ", uri);
+			log.info("info : search uri : {}", uri);
 
 			ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) parser.parse(response.getBody());
 			List<ProblemDto> problemDtoList = searchConverter.jsonToList(jsonObject);
 
-			log.info("search success");
+			log.info("info : search success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_SEARCH_SUCCESS, problemDtoList), HttpStatus.OK);
 		} catch (Exception e) {
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -75,12 +75,12 @@ public class ProblemController {
 	@GetMapping("/{id}") //나중에 body로 난이도도 보내기
 	public ResponseEntity detail(@PathVariable Long id){
 		try{
-			log.info("get problem detail : ", id);
+			log.info("info : get problem detail : {}", id);
 			ProblemDetailDto problemDetailDto = problemService.getProblemDetail(id);
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.PROBLEM_DETAIL_SUCCESS, problemDetailDto), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}

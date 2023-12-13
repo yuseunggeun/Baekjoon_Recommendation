@@ -47,10 +47,10 @@ public class BookmarkController {
 			UserResponseDto.ValidateResDto user = userService.getCurrentUser(req);
 			List<BookmarkDto> bookmarkDtoList = bookmarkService.getBookmarks(user.getUserId());
 
-			log.info("get bookmarks success");
+			log.info("info : get bookmarks success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_READ_SUCCESS, bookmarkDtoList), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -59,10 +59,10 @@ public class BookmarkController {
 		try{
 			BookmarkDto bookmarkDto = bookmarkService.getBookmark(bookmarkId);
 
-			log.info("get bookmark detail : ", bookmarkId);
+			log.info("info : get bookmark detail : {}", bookmarkId);
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_READ_SUCCESS, bookmarkDto), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -70,7 +70,7 @@ public class BookmarkController {
 	public ResponseEntity addBookmark(@PathVariable Long problemId, @RequestHeader("userId") String userId, @RequestHeader("password") String password,
 		@RequestBody BookmarkRequestDto request){
 		try{
-			log.info("add bookmark :", problemId);
+			log.info("info : add bookmark : {}", problemId);
 
 			UserRequestDto.ValidateDto req = UserRequestDto.ValidateDto.builder()
 				.userId(userId)
@@ -82,7 +82,7 @@ public class BookmarkController {
 
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_ADD_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -98,10 +98,10 @@ public class BookmarkController {
 
 			bookmarkService.deleteBookmark(bookmarkId);
 
-			log.info("delete bookmark success");
+			log.info("info : delete bookmark success");
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_DELETE_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -109,7 +109,7 @@ public class BookmarkController {
 	@PutMapping("/{bookmarkId}")
 	public ResponseEntity updateBookmarkMemo(@PathVariable Long bookmarkId, @RequestBody MemoDto request, @RequestHeader("userId") String userId, @RequestHeader("password") String password){
 		try{
-			log.info("update memo : ", request.getMemo());
+			log.info("info : update memo : {}", request.getMemo());
 
 			UserRequestDto.ValidateDto req = UserRequestDto.ValidateDto.builder()
 				.userId(userId)
@@ -121,7 +121,7 @@ public class BookmarkController {
 			bookmarkService.updateBookmark(bookmarkId, memo);
 			return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.BOOKMARK_UPDATE_SUCCESS), HttpStatus.OK);
 		} catch (Exception e){
-			log.error("error : ", e);
+			log.error("error : {}", e);
 			return new ResponseEntity(e, HttpStatus.BAD_REQUEST);
 		}
 	}
