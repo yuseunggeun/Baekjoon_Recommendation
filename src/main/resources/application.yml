@@ -1,11 +1,11 @@
 server:
   port: 8088
 spring:
-  #datasource: //application-sercret.yml
-  #  driver-class-name: com.mysql.cj.jdbc.Driver
-  #  url: ${DB_URL}
-  #  username: ${DB_USERNAME}
-  #  password: ${DB_PASSWORD}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   output:
     ansi:
       enabled: always
@@ -26,6 +26,3 @@ spring:
         hbm2ddl:
           auto: update
         default_batch_fetch_size: 1000
-  profiles:
-    include:
-      - secret
