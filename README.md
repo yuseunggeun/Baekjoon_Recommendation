@@ -1,2 +1,19 @@
-# Baekjoon_Recommendation
-백준 문제 추천 어플
+# Baekjoon_Supporter
+
+2023 풀스택서비스프로그래밍 프로젝트(서버)
+
+## 설명
+
+스프링부트로 개발한 프로젝트입니다.  
+조건에 맞는 백준 문제목록, 문제의 자세한 정보를 반환하는 api를 제공합니다.
+
+웹에서 다음 api를 테스트 해볼 수 있습니다.   
+규칙 : http://43.201.181.135:8088/problem/{백준문제id}  
+예시 : http://43.201.181.135:8088/problem/1234
+
+다른 기능들은 클라이언트 어플리케이션을 다운받아 이용해주세요.  
+https://github.com/yuseunggeun/Baekjoon_Recommendation_App
+
+## 서비스
+다음 링크에서 서버가 구동중입니다.  
+http://43.201.181.135:8088
